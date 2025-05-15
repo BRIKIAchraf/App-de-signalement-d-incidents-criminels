@@ -1,106 +1,202 @@
-<div align="center">
-  <br />
-    <a href="your-demo-video-link" target="_blank">
-      <img src="./public/report.jpg" alt="Project Banner">
-    </a>
-  
-  <br />
+# 🧑‍💻 Full-Stack Job Platform
 
-  <div>
-    <img src="https://img.shields.io/badge/-TypeScript-black?style=for-the-badge&logoColor=white&logo=typescript&color=3178C6" alt="typescript" />
-    <img src="https://img.shields.io/badge/-Next_JS-black?style=for-the-badge&logoColor=white&logo=nextdotjs&color=000000" alt="nextdotjs" />
-    <img src="https://img.shields.io/badge/-Tailwind_CSS-black?style=for-the-badge&logoColor=white&logo=tailwindcss&color=06B6D4" alt="tailwindcss" />
-    <img src="https://img.shields.io/badge/-Prisma-black?style=for-the-badge&logoColor=white&logo=prisma&color=2D3748" alt="prisma" />
-  </div>
+A powerful, modern, and scalable Job Board SaaS platform built with cutting-edge tools like **Next.js 15**, **TailwindCSS**, **Prisma**, **Auth.js**, **Inngest**, **Arcjet**, and **Stripe**.
 
-  <h3 align="center">Anonymous Reporting App</h3>
+---
 
-   <div align="center">
-     A secure platform for anonymous incident reporting
-    </div>
-</div>
+## 🚀 Tech Stack
 
-## 📋 <a name="table">Table of Contents</a>
+- **Next.js 15** – Full-stack React Framework
+- **TailwindCSS** + **shadcn/ui** – Styling and UI components
+- **Prisma ORM** – Database toolkit
+- **Neon** – Serverless Postgres DB
+- **Auth.js** – Authentication (Google, GitHub)
+- **Stripe** – Payment processing
+- **Uploadthing** – File uploads (logo, CV, etc.)
+- **Inngest** – Background jobs (summary emails)
+- **Arcjet** – Application security
+- **Zod** – Schema validation
+- **Vercel** – Hosting and deployment
 
-1. 🤖 [Introduction](#introduction)
-2. ⚙️ [Tech Stack](#tech-stack)
-3. 🔋 [Features](#features)
-4. 🤸 [Quick Start](#quick-start)
-5. 🕸️ [Environment Setup](#environment)
-6. 🚀 [Deployment](#deployment)
+---
 
-## <a name="introduction">🤖 Introduction</a>
+## ⚙️ Features
 
-This is a state-of-the-art anonymous reporting system built with Next.js 14, designed to provide a secure platform for reporting incidents while maintaining complete anonymity.
+### ✅ Authentication & Roles
 
-## <a name="tech-stack">⚙️ Tech Stack</a>
+- OAuth Login via GitHub and Google
+- Organization onboarding with logo
+- Job Seeker onboarding with CV upload
 
-- Next.js 14
-- TypeScript
-- Prisma with Neon Database
-- NextAuth.js for Authentication
-- Tailwind CSS
-- React Hook Form
-- GeminiAI
-- BCrypt for Password Encryption
+### 🛠️ Job Posting
 
-## <a name="quick-start">🤸 Quick Start</a>
+- Rich text editor (Tiptap)
+- Image upload for posts
+- Custom salary range slider
+- Listing durations: 30, 60, 90 days
+- Expiration job (Inngest)
 
-**Prerequisites**
+### 💳 Stripe Integration
 
-Make sure you have the following installed:
+- Payment for job posting
+- Webhook support
+- Auto-activation and expiration
 
-- [Node.js](https://nodejs.org/en)
-- [npm](https://www.npmjs.com/)
-- [Git](https://git-scm.com/)
+### 📬 Inngest Workflows
 
-**Installation**
+- Automated summary emails every 2 days for 30 days
+
+### 🔐 Security
+
+- Arcjet integration for:
+  - XSS protection
+  - SQL injection protection
+  - Rate limiting (higher for auth users)
+
+### 🧭 Job Discovery
+
+- Filtering and pagination
+- Favorites route
+- Detailed job post pages with "Apply" button
+- Index with suspense & SSR optimization
+
+### ✏️ CRUD Operations
+
+- Create, Edit, Delete job posts
+- Dashboard with post management
+
+### 📱 Responsive UI
+
+- Fully responsive on all devices
+- Accessible and fast
+
+---
+
+## 📦 Installation
 
 ```bash
-# Clone the repository
-git clone <your-repo-url>
-cd anonymous-reporting-system
+git clone https://github.com/YOUR-USERNAME/job-marshal.git
+cd Job-search-app
+
 
 # Install dependencies
-npm install
-
-# Set up the database
-npx prisma generate
-npx prisma db push
-
-# Start the development server
-npm run dev
+pnpm install
 ```
 
-## <a name="environment">🕸️ Environment Setup</a>
+---
 
-Create a `.env` file in the root directory with the following variables:
+## ✏️ Environment Variables
+
+Create a `.env` file:
+
+```bash
+cp .env.example .env
+```
+
+Fill in your credentials in `.env`:
 
 ```env
+# Database
+DATABASE_URL=postgresql://USER:PASSWORD@HOST:PORT/db
 
-NEXT_PUBLIC_MAPBOX_API_KEY=your-mapbox-key
-DATABASE_URL=postgresql:your-database-url
-NEXTAUTH_SECRET="your-secret-key"
-NEXTAUTH_URL="http://localhost:3000/api/auth"
-GEMINI_API_KEY=your-gemini-api-key
-NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=your-mapbox-access-api-key
+# Auth.js
+AUTH_SECRET=your_auth_secret
+AUTH_GITHUB_ID=your_github_client_id
+AUTH_GITHUB_SECRET=your_github_client_secret
+AUTH_GOOGLE_ID=your_google_client_id
+AUTH_GOOGLE_SECRET=your_google_client_secret
 
+# Stripe
+STRIPE_SECRET_KEY=sk_test_xxx
+STRIPE_WEBHOOK_SECRET=whsec_xxx
 
+# Uploadthing
+UPLOADTHING_SECRET=ut_xxx
+UPLOADTHING_APP_ID=your_app_id
+
+# Arcjet
+NEXT_PUBLIC_ARCJET_TOKEN=arcjet_pub_xxx
 ```
 
-## <a name="deployment">🚀 Deployment</a>
+---
 
-The application can be easily deployed on [Vercel](https://vercel.com):
+## 🧱 Prisma Setup
 
-1. Push your code to a Git repository
-2. Connect your repository to Vercel
-3. Configure the environment variables
-4. Deploy!
+```bash
+# Push schema to DB
+npx prisma db push
 
-## 🤝 Contributing
+# Generate client
+npx prisma generate
+```
 
-Contributions are welcome! Please read our [Contributing Guidelines](CONTRIBUTING.md) first.
+---
 
-## 📝 License
+## 🧪 Dev Server
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+```bash
+pnpm dev
+```
+
+Then open [http://localhost:3000](http://localhost:3000)
+
+---
+
+## 📂 Project Structure
+
+```
+/app
+  /api
+  /auth
+  /dashboard
+  /jobs
+  /favorites
+  /onboarding
+  /components
+  /utils
+  /styles
+
+/prisma
+  schema.prisma
+
+/lib
+  auth.ts
+  inngest.ts
+  arcjet.ts
+  stripe.ts
+```
+
+---
+
+## ☁️ Deployment
+
+### Deploy to Vercel:
+
+```bash
+vercel
+```
+
+---
+
+## 🧩 Credits
+
+Built following the [Jan Marshal 2025 tutorial](https://github.com/BRIKIAchraf/Job-search-app.git)
+
+### Technologies:
+
+- [Next.js](https://nextjs.org)
+- [TailwindCSS](https://tailwindcss.com)
+- [shadcn/ui](https://ui.shadcn.com)
+- [Auth.js](https://authjs.dev)
+- [Inngest](https://inngest.com)
+- [Arcjet](https://arcjet.com)
+- [Stripe](https://stripe.com)
+- [Uploadthing](https://uploadthing.com)
+- [Neon](https://neon.tech)
+- [Zod](https://zod.dev)
+
+---
+
+## 📄 License
+
+MIT © 2025 BRIKI Achraf / Contributors
